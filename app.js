@@ -1,10 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const { ping } = require("./controller/ping");
-const { error } = require("./controller/error");
+const { ping } = require("./controllers/ping");
+const { error } = require("./controllers/error");
+const ruleRouter = require("./routes/rules");
 
-const SLS = require("./controller/sls");
+const SLS = require("./controllers/sls");
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(express.json({ type: "application/json" }));
 app.get("/ping", ping);
 
 app.post("/fhir/sls", SLS.post);
+
+app.use("/rules", ruleRouter);
 
 app.use(error);
 

@@ -4,7 +4,7 @@ const { label } = require("../lib/labeling/labeler");
 async function post(req, res, next) {
   try {
     validateSlsRequest(req);
-    res.send(label(req.body));
+    res.send(await label(req.body));
   } catch (e) {
     next(e);
   }
