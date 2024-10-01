@@ -17,7 +17,18 @@
     "start": "node server.js",
     "test": "jest --runInBand --forceExit",
     "format": "npx prettier --write \"./**/*.js\"",
-    "create-env": "printenv > .env"
+    "create-env": "printenv > .env",
+    "db:generate": "npx drizzle-kit generate",
+    "db:local:start": "docker-compose up -d",
+    "db:dev:migrate": "NODE_ENV=development npx drizzle-kit migrate",
+    "db:test:migrate": "NODE_ENV=test npx drizzle-kit migrate",
+    "db:dev:seed": "NODE_ENV=development node lib/db/seed.js",
+    "db:test:seed": "NODE_ENV=test node lib/db/seed.js",
+    "db:dev:setup": "npm run db:local:start && npm run db:dev:migrate && npm run db:dev:seed",
+    "db:test:setup": "npm run db:local:start && npm run db:test:migrate && npm run db:test:seed",
+    "db:local:setup": "npm run db:dev:setup && npm run db:test:setup",
+    "db:prod:migrate": "NODE_ENV=production npx drizzle-kit migrate",
+    "db:local:stop": "docker-compose down"
   },
   "husky": {
     "hooks": {
