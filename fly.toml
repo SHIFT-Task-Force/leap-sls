@@ -22,4 +22,4 @@ primary_region = 'iad'
   cpus = 1
 
 [deploy]
-  release_command = "npm run db:prod:migrate"
+  release_command = "npm run db:prod:push"

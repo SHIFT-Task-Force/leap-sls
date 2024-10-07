@@ -1,8 +1,5 @@
-const { pgTable, serial, text } = require("drizzle-orm/pg-core");
+const { codes } = require("./codes.js");
+const { code_group_mappings } = require("./code_group_mappings.js");
+const { metadata } = require("./metadata.js");
 
-const hello = pgTable("hello", {
-  id: serial("id"),
-  name: text("name")
-});
-
-module.exports = { hello };
+module.exports = { codes, code_group_mappings, metadata };
